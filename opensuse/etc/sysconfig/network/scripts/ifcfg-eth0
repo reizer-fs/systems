@@ -1,0 +1,10 @@
+BOOTPROTO='static'
+BROADCAST=''
+ETHTOOL_OPTIONS=''
+IPADDR='192.168.1.122/24'
+MTU=''
+NAME='82545EM Gigabit Ethernet Controller (Copper)'
+NETWORK=''
+REMOTE_IPADDR=''
+STARTMODE='auto'
+PRE_UP_SCRIPT="compat:suse:macchanger"
