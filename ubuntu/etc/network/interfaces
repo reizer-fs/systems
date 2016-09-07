@@ -1,0 +1,218 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens32
+iface ens32 inet dhcp
+
+auto ens32:10
+iface ens32:10 inet static
+address 192.168.92.210
+netmask 255.255.255.0
+
+auto ens32:11
+iface ens32:11 inet static
+address 192.168.92.211
+netmask 255.255.255.0
+
+auto ens32:12
+iface ens32:12 inet static
+address 192.168.92.212
+netmask 255.255.255.0
+
+auto ens32:13
+iface ens32:13 inet static
+address 192.168.92.213
+netmask 255.255.255.0
+
+auto ens32:14
+iface ens32:14 inet static
+address 192.168.92.214
+netmask 255.255.255.0
+
+auto ens32:15
+iface ens32:15 inet static
+address 192.168.92.215
+netmask 255.255.255.0
+
+auto ens32:16
+iface ens32:16 inet static
+address 192.168.92.216
+netmask 255.255.255.0
+
+auto ens32:17
+iface ens32:17 inet static
+address 192.168.92.217
+netmask 255.255.255.0
+
+auto ens32:18
+iface ens32:18 inet static
+address 192.168.92.218
+netmask 255.255.255.0
+
+auto ens32:19
+iface ens32:19 inet static
+address 192.168.92.219
+netmask 255.255.255.0
+
+auto ens32:20
+iface ens32:20 inet static
+address 192.168.92.220
+netmask 255.255.255.0
+
+auto ens32:21
+iface ens32:21 inet static
+address 192.168.92.221
+netmask 255.255.255.0
+
+auto ens32:22
+iface ens32:22 inet static
+address 192.168.92.222
+netmask 255.255.255.0
+
+auto ens32:23
+iface ens32:23 inet static
+address 192.168.92.223
+netmask 255.255.255.0
+
+auto ens32:24
+iface ens32:24 inet static
+address 192.168.92.224
+netmask 255.255.255.0
+
+auto ens32:25
+iface ens32:25 inet static
+address 192.168.92.225
+netmask 255.255.255.0
+
+auto ens32:26
+iface ens32:26 inet static
+address 192.168.92.226
+netmask 255.255.255.0
+
+auto ens32:27
+iface ens32:27 inet static
+address 192.168.92.227
+netmask 255.255.255.0
+
+auto ens32:28
+iface ens32:28 inet static
+address 192.168.92.228
+netmask 255.255.255.0
+
+auto ens32:29
+iface ens32:29 inet static
+address 192.168.92.229
+netmask 255.255.255.0
+
+auto ens32:30
+iface ens32:30 inet static
+address 192.168.92.230
+netmask 255.255.255.0
+
+auto ens32:31
+iface ens32:31 inet static
+address 192.168.92.231
+netmask 255.255.255.0
+
+auto ens32:32
+iface ens32:32 inet static
+address 192.168.92.232
+netmask 255.255.255.0
+
+auto ens32:33
+iface ens32:33 inet static
+address 192.168.92.233
+netmask 255.255.255.0
+
+auto ens32:34
+iface ens32:34 inet static
+address 192.168.92.234
+netmask 255.255.255.0
+
+auto ens32:35
+iface ens32:35 inet static
+address 192.168.92.235
+netmask 255.255.255.0
+
+auto ens32:36
+iface ens32:36 inet static
+address 192.168.92.236
+netmask 255.255.255.0
+
+auto ens32:37
+iface ens32:37 inet static
+address 192.168.92.237
+netmask 255.255.255.0
+
+auto ens32:38
+iface ens32:38 inet static
+address 192.168.92.238
+netmask 255.255.255.0
+
+auto ens32:39
+iface ens32:39 inet static
+address 192.168.92.239
+netmask 255.255.255.0
+
+auto ens32:40
+iface ens32:40 inet static
+address 192.168.92.240
+netmask 255.255.255.0
+
+auto ens32:41
+iface ens32:41 inet static
+address 192.168.92.241
+netmask 255.255.255.0
+
+auto ens32:42
+iface ens32:42 inet static
+address 192.168.92.242
+netmask 255.255.255.0
+
+auto ens32:43
+iface ens32:43 inet static
+address 192.168.92.243
+netmask 255.255.255.0
+
+auto ens32:44
+iface ens32:44 inet static
+address 192.168.92.244
+netmask 255.255.255.0
+
+auto ens32:45
+iface ens32:45 inet static
+address 192.168.92.245
+netmask 255.255.255.0
+
+auto ens32:46
+iface ens32:46 inet static
+address 192.168.92.246
+netmask 255.255.255.0
+
+auto ens32:47
+iface ens32:47 inet static
+address 192.168.92.247
+netmask 255.255.255.0
+
+auto ens32:48
+iface ens32:48 inet static
+address 192.168.92.248
+netmask 255.255.255.0
+
+auto ens32:49
+iface ens32:49 inet static
+address 192.168.92.249
+netmask 255.255.255.0
+
+auto ens32:50
+iface ens32:50 inet static
+address 192.168.92.250
+netmask 255.255.255.0
+
