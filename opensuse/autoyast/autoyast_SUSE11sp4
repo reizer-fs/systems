@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <add-on>
+    <add_on_products config:type="list">
+      <listentry>
+        <media_url><![CDATA[http://XXX/repo/SLES11_SP4_DVD/updates]]></media_url>
+        <name>SITS update</name>
+        <product>SuSE-Linux-Updates</product>
+        <product_dir>/</product_dir>
+      </listentry>
+    </add_on_products>
+  </add-on>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <final_halt config:type="boolean">false</final_halt>
+      <final_reboot config:type="boolean">true</final_reboot>
+      <halt config:type="boolean">false</halt>
+      <second_stage config:type="boolean">true</second_stage>
+    </mode>
+    <mouse>
+      <id>none</id>
+    </mouse>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">true</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">true</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">true</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">true</accept_verification_failed>
+      <import_gpg_key config:type="boolean">false</import_gpg_key>
+    </signature-handling>
+    <storage/>
+  </general>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>XXX</host_address>
+        <names config:type="list">
+          <name>XXX</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+  <keyboard>
+    <keymap>french</keymap>
+  </keyboard>
+  <ldap>
+    <base_config_dn>ou=ldapconfig,dc=unix,dc=sits,dc=FQDN,dc=fr</base_config_dn>
+    <bind_dn>cn=proxyagent,ou=profile,dc=unix,dc=sits,dc=FQDN,dc=fr</bind_dn>
+    <create_ldap config:type="boolean">false</create_ldap>
+    <file_server config:type="boolean">false</file_server>
+    <ldap_domain>dc=unix,dc=sits,dc=FQDN,dc=fr</ldap_domain>
+    <ldap_server>XXX XXX XXX</ldap_server>
+    <ldap_tls config:type="boolean">false</ldap_tls>
+    <ldap_v2 config:type="boolean">false</ldap_v2>
+    <login_enabled config:type="boolean">true</login_enabled>
+    <member_attribute>member</member_attribute>
+    <mkhomedir config:type="boolean">false</mkhomedir>
+    <nss_base_group>ou=Group,dc=unix,dc=sits,dc=FQDN,dc=fr?one</nss_base_group>
+    <nss_base_passwd>ou=People,dc=unix,dc=sits,dc=FQDN,dc=fr?one</nss_base_passwd>
+    <nss_base_shadow>ou=People,dc=unix,dc=sits,dc=FQDN,dc=fr?one</nss_base_shadow>
+    <pam_password>exop</pam_password>
+    <sssd config:type="boolean">false</sssd>
+    <sssd_with_krb config:type="boolean">false</sssd_with_krb>
+    <start_autofs config:type="boolean">true</start_autofs>
+    <start_ldap config:type="boolean">true</start_ldap>
+    <tls_cacertfile>/etc/openldap/cacerts/amundica.pem</tls_cacertfile>
+  </ldap>
+  <login_settings/>
+  <networking>
+    <dhcp_options>
+      <dhclient_hostname_option>AUTO</dhclient_hostname_option>
+    </dhcp_options>
+    <dns>
+      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
+      <domain>unix.sits.FQDN.fr</domain>
+      <hostname>XXX</hostname>
+      <nameservers config:type="list">
+        <nameserver>XXX</nameserver>
+        <nameserver>XXX</nameserver>
+        <nameserver>XXX</nameserver>
+      </nameservers>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <searchlist config:type="list">
+        <search>unix.sits.FQDN.fr</search>
+        <search>ad-its.FQDN.fr</search>
+        <search>tech.sits.FQDN.fr</search>
+        <search>alias.sits.FQDN.fr</search>
+        <search>sits.FQDN.fr</search>
+      </searchlist>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>static</bootproto>
+        <device>eth0</device>
+        <ipaddr>XXX</ipaddr>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+    </interfaces>
+    <managed config:type="boolean">false</managed>
+    <routing>
+      <ip_forward config:type="boolean">false</ip_forward>
+      <routes config:type="list">
+        <route>
+          <destination>default</destination>
+          <device>-</device>
+          <gateway>XXX</gateway>
+          <netmask>-</netmask>
+        </route>
+      </routes>
+    </routing>
+  </networking>
+  <partitioning config:type="list">
+    <drive>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext3</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/boot</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>512M</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
+          <format config:type="boolean">true</format>
+	  <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>29G</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <filesystem_id config:type="integer">130</filesystem_id>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>swap</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>20G</size>
+        </partition>
+      </partitions>
+      <pesize></pesize>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <proxy>
+    <enabled config:type="boolean">false</enabled>
+    <ftp_proxy></ftp_proxy>
+    <http_proxy></http_proxy>
+    <https_proxy></https_proxy>
+    <no_proxy>localhost</no_proxy>
+    <proxy_password></proxy_password>
+    <proxy_user></proxy_user>
+  </proxy>
+  <scripts>
+    <init-scripts config:type="list">
+      <script>
+        <filename>zzz_reboot</filename>
+        <source><![CDATA[chkconfig autoyast off
+shutdown -r now]]></source>
+      </script>
+      <script>
+        <filename>zzz_reboot</filename>
+        <source><![CDATA[chkconfig autoyast off
+shutdown -r now]]></source>
+      </script>
+    </init-scripts>
+    <post-scripts config:type="list">
+      <script>
+        <debug config:type="boolean">true</debug>
+        <feedback config:type="boolean">false</feedback>
+        <filename>finalStep</filename>
+        <interpreter>shell</interpreter>
+        <location><![CDATA[]]></location>
+        <network_needed config:type="boolean">false</network_needed>
+        <notification>FINALISATION</notification>
+        <source><![CDATA[mkdir /refunix/
+echo "/- ldap automountMapName=auto_refunix,dc=unix,dc=sits,dc=FQDN,dc=fr" >> /etc/auto.master
+sed -i '/^relayhost/c\relayhost = mailhost.unix.sits.FQDN.fr' /etc/postfix/main.cf]]></source>
+      </script>
+    </post-scripts>
+  </scripts>
+  <security>
+    <console_shutdown>reboot</console_shutdown>
+    <cracklib_dict_path>/usr/lib/cracklib_dict</cracklib_dict_path>
+    <cwd_in_root_path>no</cwd_in_root_path>
+    <cwd_in_user_path>no</cwd_in_user_path>
+    <disable_restart_on_update>no</disable_restart_on_update>
+    <disable_stop_on_removal>no</disable_stop_on_removal>
+    <displaymanager_remote_access>no</displaymanager_remote_access>
+    <displaymanager_root_login_remote>no</displaymanager_root_login_remote>
+    <displaymanager_shutdown>root</displaymanager_shutdown>
+    <displaymanager_xserver_tcp_port_6000_open>no</displaymanager_xserver_tcp_port_6000_open>
+    <enable_sysrq>176</enable_sysrq>
+    <fail_delay>3</fail_delay>
+    <gid_max>60000</gid_max>
+    <gid_min>1000</gid_min>
+    <group_encryption>md5</group_encryption>
+    <ip_forward>no</ip_forward>
+    <ip_tcp_syncookies>yes</ip_tcp_syncookies>
+    <ipv6_forward>no</ipv6_forward>
+    <lastlog_enab>yes</lastlog_enab>
+    <obscure_checks_enab>yes</obscure_checks_enab>
+    <pass_max_days>99999</pass_max_days>
+    <pass_min_days>0</pass_min_days>
+    <pass_min_len>5</pass_min_len>
+    <pass_warn_age>7</pass_warn_age>
+    <passwd_encryption>blowfish</passwd_encryption>
+    <passwd_remember_history>0</passwd_remember_history>
+    <passwd_use_cracklib>yes</passwd_use_cracklib>
+    <permission_security>easy</permission_security>
+    <run_updatedb_as>nobody</run_updatedb_as>
+    <runlevel3_extra_services>insecure</runlevel3_extra_services>
+    <runlevel3_mandatory_services>secure</runlevel3_mandatory_services>
+    <runlevel5_extra_services>insecure</runlevel5_extra_services>
+    <runlevel5_mandatory_services>secure</runlevel5_mandatory_services>
+    <smtpd_listen_remote>no</smtpd_listen_remote>
+    <syslog_on_no_error>no</syslog_on_no_error>
+    <system_gid_max>499</system_gid_max>
+    <system_gid_min>100</system_gid_min>
+    <system_uid_max>499</system_uid_max>
+    <system_uid_min>100</system_uid_min>
+    <systohc>yes</systohc>
+    <uid_max>60000</uid_max>
+    <uid_min>1000</uid_min>
+    <useradd_cmd>/usr/sbin/useradd.local</useradd_cmd>
+    <userdel_postcmd>/usr/sbin/userdel-post.local</userdel_postcmd>
+    <userdel_precmd>/usr/sbin/userdel-pre.local</userdel_precmd>
+  </security>
+  <software>
+    <packages config:type="list">
+      <package>autoyast2-installation</package>
+      <package>lgtoclnt</package>
+      <package>btrfsprogs</package>
+      <package>perl-Nagios-Plugin</package>
+      <package>findutils-locate</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>Minimal</pattern>
+      <pattern>base</pattern>
+      <pattern>Minimal-32bit</pattern>
+      <pattern>base-32bit</pattern>
+    </patterns>
+  </software>
+  <suse_register>
+    <do_registration config:type="boolean">true</do_registration>
+    <reg_server>https://XXX/center/regsvc</reg_server>
+    <register_regularly config:type="boolean">false</register_regularly>
+    <registration_data>
+    </registration_data>
+    <submit_hwdata config:type="boolean">false</submit_hwdata>
+    <submit_optional config:type="boolean">false</submit_optional>
+  </suse_register>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Europe/Paris</timezone>
+  </timezone>
+  <user_defaults>
+    <group>100</group>
+    <groups>video,dialout</groups>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <encrypted config:type="boolean">false</encrypted>
+      <fullname>root</fullname>
+      <gid>0</gid>
+      <home>/root</home>
+      <password_settings>
+        <inact>-1</inact>
+        <max>99999</max>
+        <min>0</min>
+        <warn>7</warn>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>0</uid>
+      <user_password>toto1234</user_password>
+      <username>root</username>
+    </user>
+  </users>
+</profile>

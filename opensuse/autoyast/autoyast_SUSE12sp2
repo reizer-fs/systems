@@ -1,0 +1,740 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <add-on>
+    <add_on_products config:type="list">
+      <listentry>
+        <media_url>http://XXX/repo/RPMMD/SLES12-Perl-Devel/</media_url>
+        <product>SuSE-Linux-Perl-Updates</product>
+        <ask_on_error config:type="boolean">false</ask_on_error>
+        <product_dir>/</product_dir>
+        <name>SITS Perl update</name>
+      </listentry>
+    </add_on_products>
+  </add-on>
+  <bootloader>
+    <global>
+      <append>nomodeset=3</append>
+      <append_failsafe>single</append_failsafe>
+      <cryptodisk config:type="integer">0</cryptodisk>
+      <default>SLES12</default>
+      <distributor>SLES12</distributor>
+      <gfxbackground>/boot/grub2/themes/SLE/background.png</gfxbackground>
+      <gfxmode>auto</gfxmode>
+      <gfxtheme>/boot/grub2/themes/SLE/theme.txt</gfxtheme>
+      <hiddenmenu>false</hiddenmenu>
+      <os_prober>false</os_prober>
+      <suse_btrfs>true</suse_btrfs>
+      <terminal>gfxterm</terminal>
+      <timeout config:type="integer">15</timeout>
+    </global>
+    <loader_type>grub2</loader_type>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <firewall>
+    <FW_ALLOW_FW_BROADCAST_DMZ>no</FW_ALLOW_FW_BROADCAST_DMZ>
+    <FW_ALLOW_FW_BROADCAST_EXT>no</FW_ALLOW_FW_BROADCAST_EXT>
+    <FW_ALLOW_FW_BROADCAST_INT>no</FW_ALLOW_FW_BROADCAST_INT>
+    <FW_CONFIGURATIONS_DMZ/>
+    <FW_CONFIGURATIONS_EXT/>
+    <FW_CONFIGURATIONS_INT/>
+    <FW_DEV_DMZ/>
+    <FW_DEV_EXT/>
+    <FW_DEV_INT/>
+    <FW_FORWARD_ALWAYS_INOUT_DEV/>
+    <FW_FORWARD_MASQ/>
+    <FW_IGNORE_FW_BROADCAST_DMZ>no</FW_IGNORE_FW_BROADCAST_DMZ>
+    <FW_IGNORE_FW_BROADCAST_EXT>yes</FW_IGNORE_FW_BROADCAST_EXT>
+    <FW_IGNORE_FW_BROADCAST_INT>no</FW_IGNORE_FW_BROADCAST_INT>
+    <FW_IPSEC_TRUST>no</FW_IPSEC_TRUST>
+    <FW_LOAD_MODULES>nf_conntrack_netbios_ns</FW_LOAD_MODULES>
+    <FW_LOG_ACCEPT_ALL>no</FW_LOG_ACCEPT_ALL>
+    <FW_LOG_ACCEPT_CRIT>yes</FW_LOG_ACCEPT_CRIT>
+    <FW_LOG_DROP_ALL>no</FW_LOG_DROP_ALL>
+    <FW_LOG_DROP_CRIT>yes</FW_LOG_DROP_CRIT>
+    <FW_MASQUERADE>no</FW_MASQUERADE>
+    <FW_PROTECT_FROM_INT>no</FW_PROTECT_FROM_INT>
+    <FW_ROUTE>no</FW_ROUTE>
+    <FW_SERVICES_ACCEPT_DMZ/>
+    <FW_SERVICES_ACCEPT_EXT/>
+    <FW_SERVICES_ACCEPT_INT/>
+    <FW_SERVICES_ACCEPT_RELATED_DMZ/>
+    <FW_SERVICES_ACCEPT_RELATED_EXT/>
+    <FW_SERVICES_ACCEPT_RELATED_INT/>
+    <FW_SERVICES_DMZ_IP/>
+    <FW_SERVICES_DMZ_RPC/>
+    <FW_SERVICES_DMZ_TCP/>
+    <FW_SERVICES_DMZ_UDP/>
+    <FW_SERVICES_EXT_IP/>
+    <FW_SERVICES_EXT_RPC/>
+    <FW_SERVICES_EXT_TCP/>
+    <FW_SERVICES_EXT_UDP/>
+    <FW_SERVICES_INT_IP/>
+    <FW_SERVICES_INT_RPC/>
+    <FW_SERVICES_INT_TCP/>
+    <FW_SERVICES_INT_UDP/>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
+  <general>
+    <ask-list config:type="list"/>
+    <mode>
+      <confirm config:type="boolean">false</confirm>
+      <final_halt config:type="boolean">false</final_halt>
+      <final_reboot config:type="boolean">true</final_reboot>
+      <halt config:type="boolean">false</halt>
+      <second_stage config:type="boolean">true</second_stage>
+    </mode>
+    <proposals config:type="list"/>
+    <signature-handling>
+      <accept_file_without_checksum config:type="boolean">true</accept_file_without_checksum>
+      <accept_non_trusted_gpg_key config:type="boolean">true</accept_non_trusted_gpg_key>
+      <accept_unknown_gpg_key config:type="boolean">true</accept_unknown_gpg_key>
+      <accept_unsigned_file config:type="boolean">true</accept_unsigned_file>
+      <accept_verification_failed config:type="boolean">false</accept_verification_failed>
+      <import_gpg_key config:type="boolean">true</import_gpg_key>
+    </signature-handling>
+    <storage>
+      <partition_alignment config:type="symbol">align_optimal</partition_alignment>
+      <start_multipath config:type="boolean">false</start_multipath>
+    </storage>
+  </general>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>XXX</host_address>
+        <names config:type="list">
+          <name>XXX.FQDN XXX</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>::1</host_address>
+        <names config:type="list">
+          <name>localhost ipv6-localhost ipv6-loopback</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>fe00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-localnet</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff00::0</host_address>
+        <names config:type="list">
+          <name>ipv6-mcastprefix</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::1</host_address>
+        <names config:type="list">
+          <name>ipv6-allnodes</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::2</host_address>
+        <names config:type="list">
+          <name>ipv6-allrouters</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>ff02::3</host_address>
+        <names config:type="list">
+          <name>ipv6-allhosts</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+  <kdump>
+    <add_crash_kernel config:type="boolean">false</add_crash_kernel>
+    <crash_kernel>0M-:0M</crash_kernel>
+    <general>
+      <KDUMP_COMMANDLINE/>
+      <KDUMP_COMMANDLINE_APPEND/>
+      <KDUMP_COPY_KERNEL>yes</KDUMP_COPY_KERNEL>
+      <KDUMP_DUMPFORMAT>compressed</KDUMP_DUMPFORMAT>
+      <KDUMP_DUMPLEVEL>31</KDUMP_DUMPLEVEL>
+      <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
+      <KDUMP_IMMEDIATE_REBOOT>yes</KDUMP_IMMEDIATE_REBOOT>
+      <KDUMP_KEEP_OLD_DUMPS>5</KDUMP_KEEP_OLD_DUMPS>
+      <KDUMP_KERNELVER/>
+      <KDUMP_NOTIFICATION_CC/>
+      <KDUMP_NOTIFICATION_TO/>
+      <KDUMP_SAVEDIR>file:///var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SMTP_PASSWORD/>
+      <KDUMP_SMTP_SERVER/>
+      <KDUMP_SMTP_USER/>
+      <KDUMP_TRANSFER/>
+      <KDUMP_VERBOSE>3</KDUMP_VERBOSE>
+      <KEXEC_OPTIONS/>
+    </general>
+  </kdump>
+  <keyboard>
+    <keymap>french</keymap>
+  </keyboard>
+  <language>
+    <language>en_US</language>
+    <languages>fr_FR,en_US</languages>
+    <rootlang>yes</rootlang>
+    <languages/>
+  </language>
+  <login_settings/>
+  <networking>
+    <dhcp_options>
+      <dhclient_client_id/>
+      <dhclient_hostname_option>AUTO</dhclient_hostname_option>
+    </dhcp_options>
+    <dns>
+      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
+      <domain>unix.sits.FQDN.fr</domain>
+      <hostname>XXX</hostname>
+      <nameservers config:type="list">
+        <nameserver>XXX</nameserver>
+        <nameserver>XXX</nameserver>
+        <nameserver>XXX</nameserver>
+      </nameservers>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <searchlist config:type="list">
+        <search>unix.sits.FQDN.fr</search>
+        <search>ad-its.FQDN.fr</search>
+        <search>tech.sits.FQDN.fr</search>
+	<search>alias.sits.FQDN.fr</search>
+      </searchlist>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>static</bootproto>
+        <bonding_master>yes</bonding_master>
+        <bonding_module_opts>mode=802.3ad miimon=100</bonding_module_opts>
+        <bonding_slave0>eth4</bonding_slave0>
+        <bonding_slave1>eth5</bonding_slave1>
+        <bootproto>none</bootproto>
+        <device>bond0</device>
+        <ipaddr>XXX</ipaddr>
+        <netmask>255.255.255.0</netmask>
+        <prefixlen>24</prefixlen>
+        <startmode>auto</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth0</device>
+        <startmode>hotplug</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth1</device>
+        <startmode>hotplug</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth4</device>
+        <startmode>hotplug</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>none</bootproto>
+        <device>eth5</device>
+        <startmode>hotplug</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <bootproto>static</bootproto>
+        <broadcast>127.255.255.255</broadcast>
+        <device>lo</device>
+        <firewall>no</firewall>
+        <ipaddr>127.0.0.1</ipaddr>
+        <netmask>255.0.0.0</netmask>
+        <network>127.0.0.0</network>
+        <prefixlen>8</prefixlen>
+        <startmode>nfsroot</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+    </interfaces>
+    <ipv6 config:type="boolean">true</ipv6>
+    <keep_install_network config:type="boolean">true</keep_install_network>
+    <managed config:type="boolean">false</managed>
+    <net-udev config:type="list"/>
+    <routing>
+      <ipv4_forward config:type="boolean">false</ipv4_forward>
+      <ipv6_forward config:type="boolean">false</ipv6_forward>
+      <routes config:type="list">
+        <route>
+          <destination>default</destination>
+          <device>-</device>
+          <gateway>XXX</gateway>
+          <netmask>-</netmask>
+        </route>
+      </routes>
+    </routing>
+  </networking>
+  <sysconfig config:type="list" >
+   <sysconfig_entry>
+    <sysconfig_key>NTPD_FORCE_SYNC_ON_STARTUP</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/ntp</sysconfig_path>
+    <sysconfig_value>yes</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>NTPD_FORCE_SYNC_HWCLOCK_ON_STARTUP</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/ntp</sysconfig_path>
+    <sysconfig_value>yes</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>NETCONFIG_DNS_RESOLVER_OPTIONS</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/network/config</sysconfig_path>
+    <sysconfig_value>attempts:1 timeout:1</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>DEFAULT_MAP_OBJECT_CLASS</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/autofs</sysconfig_path>
+    <sysconfig_value>automountMap</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>DEFAULT_ENTRY_OBJECT_CLASS</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/autofs</sysconfig_path>
+    <sysconfig_value>automount</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>DEFAULT_MAP_ATTRIBUTE</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/autofs</sysconfig_path>
+    <sysconfig_value>automountMapName</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>DEFAULT_ENTRY_ATTRIBUTE</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/autofs</sysconfig_path>
+    <sysconfig_value>automountKey</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>DEFAULT_VALUE_ATTRIBUTE</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/autofs</sysconfig_path>
+    <sysconfig_value>automountInformation</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>UPDATEDB_PRUNEPATHS</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/locate</sysconfig_path>
+    <sysconfig_value>/mnt /cdrom /tmp /usr/tmp /var/tmp /var/spool /proc /media /sys /.snapshots</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>RUN_UPDATEDB_AS</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/locate</sysconfig_path>
+    <sysconfig_value>root</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>RC_LANG</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/language</sysconfig_path>
+    <sysconfig_value>en_US.UTF-8</sysconfig_value>
+   </sysconfig_entry>
+   <sysconfig_entry>
+    <sysconfig_key>ROOT_USES_LANG</sysconfig_key>
+    <sysconfig_path>/etc/sysconfig/language</sysconfig_path>
+    <sysconfig_value>yes</sysconfig_value>
+   </sysconfig_entry>
+  </sysconfig>
+  <nis>
+    <netconfig_policy>auto</netconfig_policy>
+    <nis_broadcast config:type="boolean">false</nis_broadcast>
+    <nis_broken_server config:type="boolean">false</nis_broken_server>
+    <nis_domain/>
+    <nis_local_only config:type="boolean">false</nis_local_only>
+    <nis_options/>
+    <nis_other_domains config:type="list"/>
+    <nis_servers config:type="list"/>
+    <slp_domain/>
+    <start_autofs config:type="boolean">true</start_autofs>
+    <start_nis config:type="boolean">false</start_nis>
+  </nis>
+  <ntp-client>
+    <ntp_policy/>
+    <peers config:type="list">
+      <peer>
+        <address>/var/lib/ntp/drift/ntp.drift</address>
+        <comment>
+# Clients from this (example!) subnet have unlimited access, but only if
+# cryptographically authenticated.
+#restrict 192.168.123.0 mask 255.255.255.0 notrust
+
+##
+## Miscellaneous stuff
+##
+
+</comment>
+        <options/>
+        <type>driftfile</type>
+      </peer>
+      <peer>
+        <address>/var/log/ntp</address>
+        <comment># path for drift file
+
+</comment>
+        <options/>
+        <type>logfile</type>
+      </peer>
+      <peer>
+        <address>/etc/ntp.keys</address>
+        <comment># alternate log file
+# logconfig =syncstatus + sysevents
+# logconfig =all
+
+# statsdir /tmp/		# directory for statistics files
+# filegen peerstats  file peerstats  type day enable
+# filegen loopstats  file loopstats  type day enable
+# filegen clockstats file clockstats type day enable
+
+#
+# Authentication stuff
+#
+</comment>
+        <options/>
+        <type>keys</type>
+      </peer>
+      <peer>
+        <address>1</address>
+        <comment># path for keys file
+</comment>
+        <options/>
+        <type>trustedkey</type>
+      </peer>
+      <peer>
+        <address>1</address>
+        <comment># define trusted keys
+</comment>
+        <options/>
+        <type>requestkey</type>
+      </peer>
+      <peer>
+        <address>1</address>
+        <comment># key (6) for accessing server variables
+</comment>
+        <options/>
+        <type>controlkey</type>
+      </peer>
+      <peer>
+        <address>XXX</address>
+        <comment/>
+        <options> iburst</options>
+        <type>peer</type>
+      </peer>
+      <peer>
+        <address>XXX</address>
+        <comment/>
+        <options> iburst</options>
+        <type>peer</type>
+      </peer>
+      <peer>
+        <address>XXX</address>
+        <comment/>
+        <options> iburst</options>
+        <type>peer</type>
+      </peer>
+    </peers>
+    <start_at_boot config:type="boolean">true</start_at_boot>
+    <start_in_chroot config:type="boolean">false</start_in_chroot>
+    <sync_interval config:type="integer">5</sync_interval>
+    <synchronize_time config:type="boolean">false</synchronize_time>
+  </ntp-client>
+  <partitioning config:type="list">
+    <drive>
+      <device>/dev/sda</device>
+      <disklabel>msdos</disklabel>
+      <enable_snapshots config:type="boolean">true</enable_snapshots>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">btrfs</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/</mount>
+          <mountby config:type="symbol">uuid</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>160g</size>
+          <subvolumes config:type="list">
+            <listentry>boot/grub2/i386-pc</listentry>
+            <listentry>boot/grub2/x86_64-efi</listentry>
+            <listentry>opt</listentry>
+            <listentry>srv</listentry>
+            <listentry>tmp</listentry>
+            <listentry>home</listentry>
+            <listentry>usr/local</listentry>
+            <listentry>var/crash</listentry>
+            <listentry>var/lib/mailman</listentry>
+            <listentry>var/lib/named</listentry>
+            <listentry>var/lib/pgsql</listentry>
+            <listentry>var/log</listentry>
+            <listentry>var/opt</listentry>
+            <listentry>var/spool</listentry>
+            <listentry>var/tmp</listentry>
+          </subvolumes>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>swap</mount>
+          <mountby config:type="symbol">uuid</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>100g</size>
+        </partition>
+      </partitions>
+      <pesize/>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+  </partitioning>
+  <printer>
+    <client_conf_content>
+      <file_contents><![CDATA[# CUPS client configuration file (optional).
+
+# You may use /etc/cups/client.conf (system wide)
+# or ~/.cups/client.conf (per user).
+# For more information see "man 5 client.conf".
+
+# The ServerName directive specifies the remote server
+# that is to be used for all client operations. That is, it
+# redirects all client requests directly to that remote server
+# so that a local running cupsd is not used in this case.
+# The default is to use the local server ("localhost") or domain socket.
+# Only one ServerName directive may appear.
+# If multiple names are present, only the last one is used.
+# The default port number is 631 but can be overridden by adding
+# a colon followed by the desired port number.
+# The default IPP version is 2.0 but can be overridden by adding
+# a slash followed by version=V where V is 1.0 or 1.1 or 2.0 or 2.1 or 2.2.
+# IPP version 2.0 does do not work with CUPS 1.3 or older servers.
+# If an CUPS 1.3 or older server is used, its older IPP version
+# must be specified as .../version=1.1 or .../version=1.0.
+
+# Examples:
+# ServerName sever.example.com
+# ServerName 192.0.2.10
+# ServerName sever.example.com:8631
+# ServerName older.server.example.com/version=1.1
+# ServerName older.server.example.com:8631/version=1.1
+
+]]></file_contents>
+    </client_conf_content>
+    <cupsd_conf_content>
+      <file_contents><![CDATA[]]></file_contents>
+    </cupsd_conf_content>
+  </printer>
+  <proxy>
+    <enabled config:type="boolean">false</enabled>
+    <ftp_proxy/>
+    <http_proxy/>
+    <https_proxy/>
+    <no_proxy>localhost, 127.0.0.1</no_proxy>
+    <proxy_password/>
+    <proxy_user/>
+  </proxy>
+  <report>
+    <errors>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">0</timeout>
+    </errors>
+    <messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </messages>
+    <warnings>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </warnings>
+    <yesno_messages>
+      <log config:type="boolean">true</log>
+      <show config:type="boolean">true</show>
+      <timeout config:type="integer">10</timeout>
+    </yesno_messages>
+  </report>
+  <services-manager>
+    <default_target>multi-user</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>autofs</service>
+        <service>btrfsmaintenance-refresh</service>
+        <service>cron</service>
+        <service>dm-event</service>
+        <service>getty@tty1</service>
+        <service>haveged</service>
+        <service>irqbalance</service>
+        <service>iscsi</service>
+        <service>nfs</service>
+        <service>nscd</service>
+        <service>ntpd</service>
+        <service>postfix</service>
+        <service>purge-kernels</service>
+        <service>rpcbind</service>
+        <service>rsyslog</service>
+        <service>sshd</service>
+        <service>systemd-readahead-collect</service>
+        <service>systemd-readahead-replay</service>
+        <service>wicked</service>
+        <service>wickedd-auto4</service>
+        <service>wickedd-dhcp4</service>
+        <service>wickedd-dhcp6</service>
+        <service>wickedd-nanny</service>
+        <service>wickedd</service>
+        <service>YaST2-Firstboot</service>
+        <service>YaST2-Second-Stage</service>
+      </enable>
+    </services>
+  </services-manager>
+  <software>
+    <image/>
+    <instsource/>
+    <packages config:type="list">
+      <package>grub2</package>
+      <package>glibc</package>
+      <package>snapper</package>
+      <package>openssh</package>
+      <package>syslinux</package>
+      <package>numactl</package>
+      <package>kexec-tools</package>
+      <package>sles-release</package>
+      <package>irqbalance</package>
+      <package>mlocate</package>
+      <package>pam_ldap</package>
+      <package>nss_ldap</package>
+      <package>perl-Bootloader-YAML</package>
+      <package>perl-Nagios-Plugin</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>Minimal</pattern>
+      <pattern>base</pattern>
+      <pattern>documentation</pattern>
+    </patterns>
+  </software>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Europe/Paris</timezone>
+  </timezone>
+  <user_defaults>
+    <expire/>
+    <group>100</group>
+    <groups/>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <no_groups config:type="boolean">true</no_groups>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list">
+    <user>
+      <encrypted config:type="boolean">false</encrypted>
+      <fullname>root</fullname>
+      <gid>0</gid>
+      <home>/root</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>0</uid>
+      <user_password>toto1234</user_password>
+      <username>root</username>
+    </user>
+  </users>
+  <files config:type="list">
+      <file>
+        <file_path>/root/.vimrc</file_path>
+        <file_contents>
+          <![CDATA[set background=dark]]>
+       </file_contents>
+      </file>
+      <file>
+        <file_path>/root/.bashrc</file_path>
+        <file_contents>
+          <![CDATA[HISTFILE=$HOME/.histfile/`date "+%Y-%m-%d-%T"`
+mkdir -p $HOME/.histfile
+export HISTFILE
+HISTTIMEFORMAT="%h/%m - %H:%M:%S "
+export HISTTIMEFORMAT
+history -s `who am i`]]>
+       </file_contents>
+      </file>
+  </files>
+  <suse_register>
+    <do_registration config:type="boolean">true</do_registration>
+    <email>unix.sits@amundi.com</email>
+    <reg_code>CD82A14B8FEDE0</reg_code>
+    <install_updates config:type="boolean">false</install_updates>
+    <reg_server>https://XXX/center/regsvc</reg_server>
+    <reg_server_cert_fingerprint_type>SHA256</reg_server_cert_fingerprint_type>
+    <reg_server_cert_fingerprint>C5:F7:3C:BD:EF:F3:B1:03:D8:62:7E:9B:F7:33:DD:E0:51:B3:2A:A1:5A:4C:6E:63:9C:F9:F9:91:4F:00:65:20</reg_server_cert_fingerprint>
+  </suse_register>
+  <scripts>
+    <post-scripts config:type="list">
+      <script>
+        <filename>finalStep.sh</filename>
+        <interpreter>shell</interpreter>
+        <network_needed config:type="boolean">true</network_needed>
+        <source><![CDATA[
+#!/bin/sh
+
+echo "Running Post-install script"
+echo "ttyS1" >> /etc/securetty
+echo "syntax on" >> /etc/vimrc
+echo "set ai" >> /etc/vimrc
+echo "set background=dark" >> /etc/vimrc
+rm -f /etc/cron.daily/0logwatch
+mkdir -p /etc/openldap/cacerts
+echo "" >> /etc/ssh/ssh_config
+echo "CheckHostIP no" >> /etc/ssh/ssh_config
+echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+echo '### AITS ###' >> /etc/ssh/sshd_config
+echo 'SyslogFacility AUTHPRIV' >> /etc/ssh/sshd_config
+echo 'MaxStartups 100:10:300' >> /etc/ssh/sshd_config
+sed -i '/^relayhost/c\relayhost = mailhost.alias.sits.FQDN.fr' /etc/postfix/main.cf
+echo '/- ldap automountMapName=auto_refunix,dc=unix,dc=sits,dc=FQDN,dc=fr' >> /etc/auto.master
+sed -i 's/# multiversion = /multiversion = /' /etc/zypp/zypp.conf
+sed -i 's/multiversion.kernels.*/multiversion.kernels = latest,latest-1,latest-2,running/' /etc/zypp/zypp.conf
+sed -i 's/# solver.onlyRequires = false/solver.onlyRequires = true\ninstallRecommends = false/' /etc/zypp/zypp.conf
+echo "New install" >> /etc/SuSE-release-sits
+mkdir -p /usr/users/opensvc/.ssh
+chown -R 1024:519 /usr/users/opensvc
+mkdir -p /usr/users/clam/appli
+mkdir /usr/prg
+chown 10123:800 /usr/users/clam/appli
+chown 10123:800 /usr/prg
+mkdir -p /usr/users/ctrlprod
+chown 10873:800 /usr/users/ctrlprod
+mkdir -p /usr/users/sysdba
+chown 10035:22 /usr/users/sysdba
+echo "+@utilisateur::::::" >> /etc/passwd
+echo "+@nagios::::::" >> /etc/passwd
+echo "+::0:0:0::::" >> /etc/shadow
+]]>
+        </source>
+      </script>
+    </post-scripts>
+  </scripts>
+</profile>
