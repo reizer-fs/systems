@@ -1,0 +1,13 @@
+[Unit]
+Description=Docker Composer Appliance
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker-compose -f template up
+ExecStop=/usr/bin/docker-compose -f template down
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
