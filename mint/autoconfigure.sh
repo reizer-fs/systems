@@ -32,3 +32,11 @@ git config --global user.name "Sebastian Petrovich"
 
 # Vmware enable proprietary 3D driver
 echo 'mks.gl.allowBlacklistedDrivers = "TRUE"' >> ~/.vmware/preferences
+
+# Install kvm and libvirt packages
+apt-get install kvm qemu-kvm libvirt-bin virtinst spice-client-gtk gir1.2-spice-client-gtk-3.0
+
+#Add common user to kvm group 
+usermod -a -G libvirtd fx
+usermod -a -G kvm fx
+
