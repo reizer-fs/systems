@@ -1,6 +1,16 @@
 #!/bin/bash
 
+[[ "$EUID" == 0 ]] && echo "Must not be run as root." && exit 1
+
 INSTALL_DIR="$HOME/Git"
+INSTALL_USER=$(id -un)
+
+# Add current user to sudoers
+sudo rm -rf /etc/sudoers.d/$INSTALL_USER &>/dev/null
+
+echo "User_Alias     ADMINISTRATORS=$INSTALL_USER
+ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
+%ADMINISTRATORS ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
 sudo apt-get -q update &>/dev/null
 sudo apt-get -q install -y openssh-server git vim tmux htop iotop &>/dev/null
@@ -15,7 +25,7 @@ git config --global user.name "Sebastian Petrovich"
 
 # ssh key generation
 [[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
-grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 # Python commodities
 sudo apt-get -q install -y python3 python3-pip python3-venv &>/dev/null
