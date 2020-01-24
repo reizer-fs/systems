@@ -13,7 +13,7 @@ ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
 %ADMINISTRATORS ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
 echo "[info]: refreshing apt cache ..." && sudo apt-get -q update &>/dev/null
-echo "[info]: installing packages ..." && sudo apt-get -q install -y openssh-server git vim tmux htop iotop &>/dev/null
+echo "[info]: installing packages ..." && sudo apt-get -q install -y openssh-server git vim-nox tmux htop iotop &>/dev/null
 
 echo "[info]: creating ssh agent service ..." 
 mkdir -p ~/.config/systemd/user &>/dev/null
