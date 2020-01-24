@@ -12,8 +12,30 @@ echo "User_Alias     ADMINISTRATORS=$INSTALL_USER
 ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
 %ADMINISTRATORS ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
-sudo apt-get -q update &>/dev/null
-sudo apt-get -q install -y openssh-server git vim tmux htop iotop &>/dev/null
+echo "[info]: refreshing apt cache ..." && sudo apt-get -q update &>/dev/null
+echo "[info]: installing packages ..." && sudo apt-get -q install -y openssh-server git vim tmux htop iotop &>/dev/null
+
+echo "[info]: creating ssh agent service ..." 
+mkdir -p ~/.config/systemd/user &>/dev/null
+cat << EOF > ~/.config/systemd/user/ssh-agent-$(id -un).service
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a \$SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user daemon-reload &>/dev/null
+systemctl --user enable ssh-agent-$(id -un) &>/dev/null
+systemctl --user start ssh-agent-$(id -un) &>/dev/null
+
+egrep -q '^AddKeysToAgent' ~/.ssh/config && sed -i 's/^AddKeysToAgent.*$/AddKeysToAgent yes/g' ~/.ssh/config || echo 'AddKeysToAgent yes' >> ~/.ssh/config
+export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
 sudo update-alternatives --config editor
