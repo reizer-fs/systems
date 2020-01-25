@@ -38,7 +38,7 @@ egrep -q '^AddKeysToAgent' ~/.ssh/config &>/dev/null && sed -i 's/^AddKeysToAgen
 export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
-sudo update-alternatives --config editor
+sudo update-alternatives --set editor /usr/bin/vim.nox
 
 # Git settings
 git config --global push.default matching
@@ -49,25 +49,17 @@ git config --global user.name "Sebastian Petrovich"
 [[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
 grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-echo "[info]: installing python ..." && sudo apt-get -q install -y python3 python3-pip python3-venv &>/dev/null
-
-# Create Ansible python env
-ANSIBLE_VERSIONS="2.9"
-for ansible_version in $ANSIBLE_VERSIONS ; do
-	mkdir -p $HOME/Python/ansible-${ansible_version}
-	python3 -m venv $HOME/Python/ansible-${ansible_version}
-	echo "Please run the commands below: 
-	. $HOME/Python/ansible-${ansible_version}/bin/activate
-	pip3 install --upgrade pip ansible"
-done
 
 while true ; do
-    echo "Public key is : $(cat ~/.ssh/id_rsa.pub)\n"
+    echo "[info]: public key is : "
+    echo ""
+    echo "$(cat ~/.ssh/id_rsa.pub)"
+    echo ""
     read -r -p "Is this key registered in the authorized ssh keys on github? [Y/n] " input
 
     case $input in
         [yY][eE][sS]|[yY])
-        echo "Yes" ;;
+        break ;;
         [nN][oO]|[nN])
         echo "No" ;;
         *)
@@ -76,6 +68,14 @@ while true ; do
 done
 
 for i in systems docker ansible windows-client ; do
-	echo "Processing git repository: $i"
-	[[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i}
+    echo "[info]: cloning git repo $i ..." && sudo apt-get -q install -y python3 python3-pip python3-venv &>/dev/null
+    [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i} &>/dev/null
 done
+
+echo "[info]: installing python ..." && sudo apt-get -q install -y python3 python3-pip python3-venv &>/dev/null
+
+echo "[info]: creating python env for ansible..."
+mkdir -p $HOME/Python/ansible-2.9
+python3 -m venv $HOME/Python/ansible-2.9
+echo "[info]: done."
+echo "[info]: Please run the command: . $HOME/Python/ansible-2.9/bin/activate && pip3 install --upgrade pip ansible"
