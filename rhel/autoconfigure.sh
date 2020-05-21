@@ -1,45 +1,82 @@
 #!/bin/bash
+set -u
 
-INSTALL_DIR="/opt/ffx"
+[[ "$EUID" == 0 ]] && echo "Must not be run as root." && exit 1
 
-yum update
-yum -y install git
-yum -y install vim
-yum -y install docker.io
-yum -y install tmux
-yum -y install iotop
+INSTALL_DIR="$HOME/Git"
+INSTALL_USER=$(id -un)
 
-mkdir -p $INSTALL_DIR
-for i in systems scripts windows-client docker vim misc kvm; do 
-	cd $INSTALL_DIR && git clone https://github.com/reizer-fs/$i.git &
-done
+# Add current user to sudoers
+sudo rm -rf /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
-rm ~/.bashrc ; ln -s $INSTALL_DIR/scripts/config_host/.bashrc ~/.bashrc
-rm /root/.bashrc ; ln -s $INSTALL_DIR/scripts/config_host/.bashrc /root/.bashrc
+echo "User_Alias     ADMINISTRATORS=$INSTALL_USER
+ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
+%ADMINISTRATORS ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
-mkdir /etc/tmux.conf.d/
-ln -s $INSTALL_DIR/scripts/tmux/tmux.conf /etc/tmux.conf.d/tmux.conf
+#echo "[info]: refreshing yum cache ..." && sudo yum -q update &>/dev/null
+echo "[info]: installing packages ..." && sudo yum install -y openssh-server git vim-nox tmux htop iotop &>/dev/null
+
+echo "[info]: creating ssh agent service ..." 
+mkdir -p ~/.config/systemd/user &>/dev/null
+cat << EOF > ~/.config/systemd/user/ssh-agent-$(id -un).service
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a \$SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user daemon-reload &>/dev/null
+systemctl --user enable ssh-agent-$(id -un) &>/dev/null
+systemctl --user start ssh-agent-$(id -un) &>/dev/null
+
+egrep -q '^AddKeysToAgent' ~/.ssh/config &>/dev/null && sed -i 's/^AddKeysToAgent.*$/AddKeysToAgent yes/g' ~/.ssh/config || echo 'AddKeysToAgent yes' >> ~/.ssh/config
+export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
-update-alternatives --config editor
+sudo update-alternatives --set editor /usr/bin/vim.nox
 
 # Git settings
 git config --global push.default matching
-
 git config --global user.email "sebastianpetrovich@gmail.com"
 git config --global user.name "Sebastian Petrovich"
 
-# Vmware enable proprietary 3D driver
-#echo 'mks.gl.allowBlacklistedDrivers = "TRUE"' >> ~/.vmware/preferences
+# ssh key generation
+[[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
+grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-# Install kvm and libvirt packages
-#yum install kvm qemu-kvm libvirt-bin virtinst spice-client-gtk gir1.2-spice-client-gtk-3.0
 
-#Add common user to kvm group 
-usermod -a -G libvirtd fx
-usermod -a -G kvm fx
+while true ; do
+    echo "[info]: public key is : "
+    echo ""
+    echo "$(cat ~/.ssh/id_rsa.pub)"
+    echo ""
+    read -r -p "Is this key registered in the authorized ssh keys on github? [Y/n] " input
 
-# Enable services 
-systemctl enable docker
-systemctl restart docker
-systemctl daemon-reload
+    case $input in
+        [yY][eE][sS]|[yY])
+        break ;;
+        [nN][oO]|[nN])
+        echo "No" ;;
+        *)
+        echo "Invalid input..." ;;
+    esac
+done
+
+for i in systems docker ansible windows-client ; do
+    echo "[info]: cloning git repo $i ..."
+    [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i} &>/dev/null
+done
+
+echo "[info]: installing python ..." && sudo yum install -y python3 python3-pip python3-venv
+
+echo "[info]: creating python env for ansible..."
+mkdir -p $HOME/Python/ansible-2.9
+python3 -m venv $HOME/Python/ansible-2.9
+echo "[info]: done."
+echo "[info]: Please run the command: . $HOME/Python/ansible-2.9/bin/activate && pip3 install --upgrade pip ansible"
