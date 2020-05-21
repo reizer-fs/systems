@@ -13,8 +13,9 @@ echo "User_Alias     ADMINISTRATORS=$INSTALL_USER
 ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
 %ADMINISTRATORS ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
-#echo "[info]: refreshing yum cache ..." && sudo yum -q update &>/dev/null
-echo "[info]: installing packages ..." && sudo yum install -y openssh-server git vim-nox tmux htop iotop &>/dev/null
+echo "[info]: refreshing yum cache ..." && sudo yum clean all &>/dev/null
+echo "[info]: installing packages ..." && sudo yum install -y openssh-server git vim
+#echo "[info]: installing packages ..." && sudo yum install -y openssh-server git vim-nox tmux htop iotop &>/dev/null
 
 echo "[info]: creating ssh agent service ..." 
 mkdir -p ~/.config/systemd/user &>/dev/null
@@ -39,17 +40,18 @@ egrep -q '^AddKeysToAgent' ~/.ssh/config &>/dev/null && sed -i 's/^AddKeysToAgen
 export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
-sudo update-alternatives --set editor /usr/bin/vim.nox
+sudo update-alternatives --set editor /usr/bin/vim
 
 # Git settings
-git config --global push.default matching
-git config --global user.email "sebastianpetrovich@gmail.com"
-git config --global user.name "Sebastian Petrovich"
+/usr/bin/git config --global push.default matching
+/usr/bin/git config --global user.email "sebastianpetrovich@gmail.com"
+/usr/bin/git config --global user.name "Sebastian Petrovich"
 
 # ssh key generation
 [[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
 grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
+chmod 644 ~/.ssh/config
+chmod 600 ~/.ssh
 
 while true ; do
     echo "[info]: public key is : "
@@ -70,13 +72,14 @@ done
 
 for i in systems docker ansible windows-client ; do
     echo "[info]: cloning git repo $i ..."
-    [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i} &>/dev/null
+    [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i}
+    #[[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i} &>/dev/null
 done
 
-echo "[info]: installing python ..." && sudo yum install -y python3 python3-pip python3-venv
+echo "[info]: installing python ..." && sudo yum install -y python36 python3-pip
 
 echo "[info]: creating python env for ansible..."
 mkdir -p $HOME/Python/ansible-2.9
-python3 -m venv $HOME/Python/ansible-2.9
+python3.6 -m venv $HOME/Python/ansible-2.9
 echo "[info]: done."
 echo "[info]: Please run the command: . $HOME/Python/ansible-2.9/bin/activate && pip3 install --upgrade pip ansible"
