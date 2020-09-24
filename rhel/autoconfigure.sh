@@ -1,3 +1,4 @@
+
 #!/bin/bash
 set -u
 
@@ -22,12 +23,10 @@ mkdir -p ~/.config/systemd/user &>/dev/null
 cat << EOF > ~/.config/systemd/user/ssh-agent-$(id -un).service
 [Unit]
 Description=SSH key agent
-
 [Service]
 Type=simple
 Environment=SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 ExecStart=/usr/bin/ssh-agent -D -a \$SSH_AUTH_SOCK
-
 [Install]
 WantedBy=default.target
 EOF
@@ -36,7 +35,7 @@ systemctl --user daemon-reload &>/dev/null
 systemctl --user enable ssh-agent-$(id -un) &>/dev/null
 systemctl --user start ssh-agent-$(id -un) &>/dev/null
 
-egrep -q '^AddKeysToAgent' ~/.ssh/config &>/dev/null && sed -i 's/^AddKeysToAgent.*$/AddKeysToAgent yes/g' ~/.ssh/config || echo 'AddKeysToAgent yes' >> ~/.ssh/config
+[[ -f "$HOME/.ssh/config" ]] && egrep -q '^AddKeysToAgent' ~/.ssh/config &>/dev/null && sed -i 's/^AddKeysToAgent.*$/AddKeysToAgent yes/g' ~/.ssh/config || echo 'AddKeysToAgent yes' >> ~/.ssh/config
 export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
@@ -50,8 +49,8 @@ sudo update-alternatives --set editor /usr/bin/vim
 # ssh key generation
 [[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
 grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 644 ~/.ssh/config
-chmod 600 ~/.ssh
+[[ -f "$HOME/.ssh/config" ]] && chmod 644 ~/.ssh/config
+chmod 700 ~/.ssh
 
 while true ; do
     echo "[info]: public key is : "
