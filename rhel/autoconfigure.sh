@@ -50,6 +50,18 @@ sudo update-alternatives --set editor /usr/bin/vim
 [[ ! -f "$HOME/.ssh/id_rsa" ]] && ssh-keygen -t rsa -b 4096
 grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 [[ -f "$HOME/.ssh/config" ]] && chmod 644 ~/.ssh/config
+
+# Finger gesture management
+# https://github.com/bulletmark/libinput-gestures
+SYSTEM=$(sudo dmidecode -s system-manufacturer)
+if [[ "$SYSTEM" ~! 'QEMU|innotek' ]] ; then
+    sudo gpasswd -a $USER input
+    sudo dnf install wmctrl xdotool libinput-utils
+    (cd /tmp/ && git clone https://github.com/bulletmark/libinput-gestures.git \
+     && cd libinput-gesture \
+     && sudo make install )
+fi
+
 chmod 700 ~/.ssh
 
 while true ; do
@@ -69,7 +81,7 @@ while true ; do
     esac
 done
 
-for i in systems docker ansible windows-client ; do
+for i in systems docker ansible windows-client scripts kickstart ; do
     echo "[info]: cloning git repo $i ..."
     [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i}
     #[[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i} &>/dev/null
