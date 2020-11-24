@@ -25,7 +25,7 @@ cat << EOF > ~/.config/systemd/user/ssh-agent-$(id -un).service
 Description=SSH key agent
 [Service]
 Type=simple
-Environment=SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
+Environment=SSH_AUTH_SOCK=/run/user/\$(id -u)/systemd/ssh-agent.socket
 ExecStart=/usr/bin/ssh-agent -D -a \$SSH_AUTH_SOCK
 [Install]
 WantedBy=default.target
@@ -54,13 +54,12 @@ grep -qf ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys &>/dev/null || cat ~/.ssh/id_r
 # Finger gesture management
 # https://github.com/bulletmark/libinput-gestures
 SYSTEM=$(sudo dmidecode -s system-manufacturer)
-if [[ "$SYSTEM" ~! 'QEMU|innotek' ]] ; then
-    sudo gpasswd -a $USER input
-    sudo dnf install wmctrl xdotool libinput-utils
-    (cd /tmp/ && git clone https://github.com/bulletmark/libinput-gestures.git \
-     && cd libinput-gesture \
-     && sudo make install )
-fi
+[[ ! "$SYSTEM" =~ 'QEMU|innotek' ]] && (
+    sudo gpasswd -a $USER input \
+    && sudo dnf install -y wmctrl xdotool libinput-utils make \
+    && cd /tmp/ && git clone https://github.com/bulletmark/libinput-gestures.git \
+    && cd libinput-gestures \
+    && sudo make install )
 
 chmod 700 ~/.ssh
 
