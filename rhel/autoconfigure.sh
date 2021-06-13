@@ -26,7 +26,7 @@ Description=SSH key agent
 [Service]
 Type=simple
 Environment=SSH_AUTH_SOCK=/run/user/\$\$(id -u)/systemd/ssh-agent.socket
-ExecStart=/usr/bin/ssh-agent -D -a \$\$SSH_AUTH_SOCK
+ExecStart=/usr/bin/ssh-agent -D -a \$\${SSH_AUTH_SOCK}
 [Install]
 WantedBy=default.target
 EOF
