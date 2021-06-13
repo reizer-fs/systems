@@ -38,6 +38,7 @@ systemctl --user start ssh-agent-$(id -un) &>/dev/null
 export SSH_AUTH_SOCK=/run/user/$(id -u)/systemd/ssh-agent.socket
 
 # Default Editor 
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
 sudo update-alternatives --set editor /usr/bin/vim
 
 # Git settings
