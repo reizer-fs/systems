@@ -8,7 +8,7 @@ INSTALL_DIR="$HOME/Git"
 INSTALL_USER=$(id -un)
 
 # Add current user to sudoers
-sudo rm -rf /etc/sudoers.d/$INSTALL_USER &>/dev/null
+# sudo rm -rf /etc/sudoers.d/$INSTALL_USER &>/dev/null
 
 echo "User_Alias     ADMINISTRATORS=$INSTALL_USER
 ADMINISTRATORS ALL=(ALL) NOPASSWD:ALL
