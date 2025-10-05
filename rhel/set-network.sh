@@ -29,3 +29,7 @@ sudo nmcli connection modify enp1s0 IPv4.address X.X.X.X/24
 sudo nmcli connection modify enp1s0 IPv4.gateway 192.168.122.1
 sudo nmcli connection modify enp1s0 IPv4.dns 192.168.122.1
 sudo nmcli connection modify enp1s0 IPv4.method manual
+
+############# Wireless connexion ##############
+nmcli c add type wifi con-name <name> ifname wlan0 ssid <ssid>
+nmcli c modify <name> wifi-sec.key-mgmt wpa-psk wifi-sec.psk <password>
