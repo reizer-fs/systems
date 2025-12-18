@@ -71,10 +71,22 @@ for i in systems docker ansible windows-client scripts kickstart ; do
     [[ ! -d "$INSTALL_DIR/${i}" ]] && /usr/bin/git clone --origin origin git@github.com:reizer-fs/${i}.git $INSTALL_DIR/${i}
 done
 
-echo "[info]: installing python ..." && sudo zypper install -y python36 python3-pip
+echo "[info]: installing python ..." && sudo zypper install -y python3 python3-pip
 
-echo "[info]: creating python env for ansible..."
-mkdir -p $HOME/Python/ansible-2.9
-python3 -m venv $HOME/Python/ansible-2.9
 echo "[info]: done."
-echo "[info]: Please run the command: . $HOME/Python/ansible-2.9/bin/activate && pip3 install --upgrade pip ansible==2.9"
+ansible-galaxy collection install community.libvirt
+ansible-galaxy collection install community.general
+ansible-galaxy collection install containers.podman
+ansible-galaxy collection install posix.firewalld
+ansible-galaxy collection install ansible.posix
+ansible-galaxy collection install community.crypto
+
+
+# Enable masquerade to NAT KVM traffic on private network
+#echo 1 > /proc/sys/net/ipv4/ip_forward
+#iptables -A FORWARD -i br-nodes -o wlan0 -j ACCEPT
+#iptables -A FORWARD -i wlan0 -o br-nodes -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+#firewall-cmd --permanent --direct --passthrough ipv4 -I FORWARD -i br-nodes -j ACCEPT
+#firewall-cmd --permanent --direct --passthrough ipv4 -I FORWARD -o br-nodes -j ACCEPT
+#firewall-cmd --reload
