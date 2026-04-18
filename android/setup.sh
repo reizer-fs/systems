@@ -9,8 +9,10 @@ INSTALL_USER=$(id -un)
 echo "[info]: installing packages ..." && pkg install -y git tmux python-pip python-cryptography rust vim &>/dev/null
 
 # Default Editor 
-update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100
-update-alternatives --set editor /usr/bin/vim
+BIN_VIM=$(type -p vim)
+BIN_EDITOR=$(type -p editor)
+update-alternatives --install $BIN_EDITOR editor $BIN_VIM 100
+update-alternatives --set editor $BIN_VIM
 
 # Git settings
 /usr/bin/git config --global push.default matching
@@ -47,9 +49,6 @@ for i in systems ansible scripts ; do
 done
 
 echo "[info]: creating python env for ansible..."
-rm -rf $HOME/projects/ansible && mkdir -p $HOME/projects/ansible && python3 -m venv $HOME/projects/ansible && . $HOME/projects/ansible/bin/activate && pip install --upgrade pip && pip install ansible
-
-
 export ANDROID_API_LEVEL=35
 export CARGO_BUILD_TARGET="$(rustc -vV | sed -n 's|host: ||p')"
-
+rm -rf $HOME/projects/ansible && mkdir -p $HOME/projects/ansible && python3 -m venv $HOME/projects/ansible && . $HOME/projects/ansible/bin/activate && pip install --upgrade pip && pip install ansible
