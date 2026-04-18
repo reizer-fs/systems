@@ -4,7 +4,7 @@ set -u
 
 [[ "$EUID" == 0 ]] && echo "Must not be run as root." && exit 1
 
-INSTALL_DIR="$HOME/Git"
+INSTALL_DIR="$HOME/git"
 INSTALL_USER=$(id -un)
 
 # Add current user to sudoers
